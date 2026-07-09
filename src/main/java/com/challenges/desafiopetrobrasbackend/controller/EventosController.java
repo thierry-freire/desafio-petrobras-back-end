@@ -35,8 +35,14 @@ public class EventosController {
     }
 
     @PostMapping("/events")
-    public ResponseEntity<Eventos> save (@RequestBody Eventos evento) {
+    public ResponseEntity<EventosDTO> save (@RequestBody Eventos evento) {
         eventosService.save(evento);
         return new ResponseEntity<>(HttpStatus.CREATED);
+    }
+
+    @DeleteMapping("/events/{id}")
+    public ResponseEntity<EventosDTO> delete (@RequestParam Long id) {
+        eventosService.delete(id);
+        return new ResponseEntity<>(HttpStatus.ACCEPTED);
     }
 }

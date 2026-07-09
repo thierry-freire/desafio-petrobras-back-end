@@ -44,4 +44,13 @@ public class EventosServiceImpl implements EventosService {
     public void save(Eventos evento) {
         eventosRepository.save(evento);
     }
+
+    @Override
+    public void delete(Long id) {
+        Eventos evento = eventosRepository.getReferenceById(id.intValue());
+        evento.setDeleted("S");
+        evento.setUpdatedAt(Date.from(Instant.now()));
+
+        eventosRepository.save(evento);
+    }
 }

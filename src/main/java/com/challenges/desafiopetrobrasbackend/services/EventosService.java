@@ -15,4 +15,6 @@ public interface EventosService {
     EventosDTO update(Long id, EventosDTO updateInfo);
 
     void save(Eventos evento);
+
+    void delete(Long id);
 }
