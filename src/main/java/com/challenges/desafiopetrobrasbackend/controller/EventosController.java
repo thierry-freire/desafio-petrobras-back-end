@@ -5,6 +5,7 @@ import com.challenges.desafiopetrobrasbackend.model.Eventos;
 import com.challenges.desafiopetrobrasbackend.services.EventosService;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.HttpStatusCode;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -26,6 +27,6 @@ public class EventosController {
     @PostMapping("/events")
     public ResponseEntity<Eventos> save (@RequestBody Eventos evento) {
         eventosService.save(evento);
-        return new ResponseEntity<>(HttpStatusCode.valueOf(201));
+        return new ResponseEntity<>(HttpStatus.CREATED);
     }
 }
