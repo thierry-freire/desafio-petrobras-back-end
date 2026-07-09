@@ -31,4 +31,13 @@ public class Eventos {
 
     @Column(name = "local_evento")
     private String local;
+
+    @Column(name = "created_at")
+    private Date createdAt;
+
+    @Column(name = "updated_at")
+    private Date updatedAt;
+
+    @Column(name = "deleted")
+    private String deleted;
 }
