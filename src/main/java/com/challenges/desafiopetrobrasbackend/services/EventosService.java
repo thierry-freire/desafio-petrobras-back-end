@@ -8,7 +8,9 @@ import org.springframework.stereotype.Service;
 
 @Service
 public interface EventosService {
-    Page<EventosDTO> listar(Pageable pageable);
+    Page<EventosDTO> list(Pageable pageable);
+
+    EventosDTO getOne(Long id);
 
     void save(Eventos evento);
 }

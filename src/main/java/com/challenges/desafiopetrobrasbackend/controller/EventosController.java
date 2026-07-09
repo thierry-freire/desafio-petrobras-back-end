@@ -20,8 +20,13 @@ public class EventosController {
     }
 
     @GetMapping("/events")
-    public ResponseEntity<Page<EventosDTO>> listar (Pageable pageable){
-        return ResponseEntity.ok(eventosService.listar(pageable));
+    public ResponseEntity<Page<EventosDTO>> list (@RequestParam Pageable pageable){
+        return ResponseEntity.ok(eventosService.list(pageable));
+    }
+
+    @GetMapping("/events/{id}")
+    public ResponseEntity<EventosDTO> getOne (@RequestParam Long id) {
+        return ResponseEntity.ok(eventosService.getOne(id));
     }
 
     @PostMapping("/events")

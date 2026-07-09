@@ -16,8 +16,13 @@ public class EventosServiceImpl implements EventosService {
     }
 
     @Override
-    public Page<EventosDTO> listar(Pageable pageable) {
+    public Page<EventosDTO> list(Pageable pageable) {
         return eventosRepository.findAll(pageable).map(EventosDTO::new);
+    }
+
+    @Override
+    public EventosDTO getOne(Long id) {
+        return new EventosDTO(eventosRepository.getReferenceById(id.intValue()));
     }
 
     @Override
