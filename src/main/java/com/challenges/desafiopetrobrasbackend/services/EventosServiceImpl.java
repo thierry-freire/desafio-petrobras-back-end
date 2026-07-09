@@ -7,6 +7,9 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
+import java.time.Instant;
+import java.util.Date;
+
 @Service
 public class EventosServiceImpl implements EventosService {
     private final EventosRepository eventosRepository;
@@ -23,6 +26,18 @@ public class EventosServiceImpl implements EventosService {
     @Override
     public EventosDTO getOne(Long id) {
         return new EventosDTO(eventosRepository.getReferenceById(id.intValue()));
+    }
+
+    @Override
+    public EventosDTO update(Long id, EventosDTO updateInfo) {
+        Eventos evento = eventosRepository.getReferenceById(id.intValue());
+        evento.setDescricao(updateInfo.getDescricao());
+        evento.setTitulo(updateInfo.getTitulo());
+        evento.setData(updateInfo.getData());
+        evento.setLocal(updateInfo.getLocal());
+        evento.setUpdatedAt(Date.from(Instant.now()));
+
+        return new EventosDTO(eventosRepository.save(evento));
     }
 
     @Override

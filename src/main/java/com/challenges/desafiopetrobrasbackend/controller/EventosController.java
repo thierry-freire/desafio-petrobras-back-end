@@ -29,6 +29,11 @@ public class EventosController {
         return ResponseEntity.ok(eventosService.getOne(id));
     }
 
+    @PutMapping("/events/{id}")
+    public ResponseEntity<EventosDTO> update (@RequestParam Long id, @RequestBody EventosDTO updateInfo) {
+        return ResponseEntity.ok(eventosService.update(id, updateInfo));
+    }
+
     @PostMapping("/events")
     public ResponseEntity<Eventos> save (@RequestBody Eventos evento) {
         eventosService.save(evento);

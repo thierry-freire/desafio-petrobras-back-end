@@ -12,5 +12,7 @@ public interface EventosService {
 
     EventosDTO getOne(Long id);
 
+    EventosDTO update(Long id, EventosDTO updateInfo);
+
     void save(Eventos evento);
 }
