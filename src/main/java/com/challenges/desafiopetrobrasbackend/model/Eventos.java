@@ -7,6 +7,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import java.time.Instant;
 import java.util.Date;
 
 @Getter
@@ -47,5 +48,8 @@ public class Eventos {
         this.descricao = eventoDTO.getDescricao();
         this.data = eventoDTO.getData();
         this.local = eventoDTO.getLocal();
+        this.createdAt = Date.from(Instant.now());
+        this.updatedAt = Date.from(Instant.now());
+        this.deleted = "N";
     }
 }

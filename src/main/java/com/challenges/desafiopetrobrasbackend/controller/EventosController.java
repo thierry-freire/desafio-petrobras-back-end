@@ -43,7 +43,7 @@ public class EventosController {
             @ApiResponse(responseCode = "400", description = "Requisição inválida", content = @Content(mediaType = "application/json", schema = @Schema(implementation = ErrorDTO.class))),
             @ApiResponse(responseCode = "500", description = "Erro interno", content = @Content(mediaType = "application/json", schema = @Schema(implementation = ErrorDTO.class)))
     })
-    public ResponseEntity<EventosDTO> getOne (@Valid @RequestParam Long id) {
+    public ResponseEntity<EventosDTO> getOne (@Valid @PathVariable Long id) {
         return ResponseEntity.ok(eventosService.getOne(id));
     }
 
@@ -54,7 +54,7 @@ public class EventosController {
             @ApiResponse(responseCode = "400", description = "Requisição inválida", content = @Content(mediaType = "application/json", schema = @Schema(implementation = ErrorDTO.class))),
             @ApiResponse(responseCode = "500", description = "Erro interno", content = @Content(mediaType = "application/json", schema = @Schema(implementation = ErrorDTO.class)))
     })
-    public ResponseEntity<EventosDTO> update (@Valid @RequestParam Long id, @Valid @RequestBody EventosDTO updateInfo) {
+    public ResponseEntity<EventosDTO> update (@Valid @PathVariable Long id, @Valid @RequestBody EventosDTO updateInfo) {
         return ResponseEntity.ok(eventosService.update(id, updateInfo));
     }
 
@@ -77,7 +77,7 @@ public class EventosController {
             @ApiResponse(responseCode = "400", description = "Requisição inválida", content = @Content(mediaType = "application/json", schema = @Schema(implementation = ErrorDTO.class))),
             @ApiResponse(responseCode = "500", description = "Erro interno", content = @Content(mediaType = "application/json", schema = @Schema(implementation = ErrorDTO.class)))
     })
-    public ResponseEntity<EventosDTO> delete (@Valid @RequestParam Long id) {
+    public ResponseEntity<EventosDTO> delete (@Valid @PathVariable Long id) {
         eventosService.delete(id);
         return new ResponseEntity<>(HttpStatus.ACCEPTED);
     }
