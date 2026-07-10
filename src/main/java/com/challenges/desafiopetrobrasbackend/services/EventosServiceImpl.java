@@ -26,12 +26,12 @@ public class EventosServiceImpl implements EventosService {
 
     @Override
     public EventosDTO getOne(Long id) {
-        return new EventosDTO(eventosRepository.findById(id.intValue()).orElseThrow(() -> new ResourceNotFoundException("Evento não encontrado.")));
+        return new EventosDTO(eventosRepository.findById(id).orElseThrow(() -> new ResourceNotFoundException("Evento não encontrado.")));
     }
 
     @Override
     public EventosDTO update(Long id, EventosDTO updateInfo) {
-        Eventos evento = eventosRepository.findById(id.intValue()).orElseThrow(() -> new ResourceNotFoundException("Evento não encontrado."));
+        Eventos evento = eventosRepository.findById(id).orElseThrow(() -> new ResourceNotFoundException("Evento não encontrado."));
         evento.setDescricao(updateInfo.getDescricao());
         evento.setTitulo(updateInfo.getTitulo());
         evento.setData(updateInfo.getData());
@@ -48,7 +48,7 @@ public class EventosServiceImpl implements EventosService {
 
     @Override
     public void delete(Long id) {
-        Eventos evento = eventosRepository.findById(id.intValue()).orElseThrow(() -> new ResourceNotFoundException("Evento não encontrado."));
+        Eventos evento = eventosRepository.findById(id).orElseThrow(() -> new ResourceNotFoundException("Evento não encontrado."));
         evento.setDeleted("S");
         evento.setUpdatedAt(Date.from(Instant.now()));
 
