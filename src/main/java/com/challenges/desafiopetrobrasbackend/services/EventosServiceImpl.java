@@ -21,7 +21,7 @@ public class EventosServiceImpl implements EventosService {
 
     @Override
     public Page<EventosDTO> list(Pageable pageable) {
-        return eventosRepository.findAll(pageable).map(EventosDTO::new);
+        return eventosRepository.findAllByDeleted("N", pageable).map(EventosDTO::new);
     }
 
     @Override
