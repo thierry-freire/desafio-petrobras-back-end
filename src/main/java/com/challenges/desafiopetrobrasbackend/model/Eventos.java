@@ -1,5 +1,6 @@
 package com.challenges.desafiopetrobrasbackend.model;
 
+import com.challenges.desafiopetrobrasbackend.dtos.EventosDTO;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -40,4 +41,11 @@ public class Eventos {
 
     @Column(name = "deleted")
     private String deleted;
+
+    public Eventos (EventosDTO eventoDTO) {
+        this.titulo = eventoDTO.getTitulo();
+        this.descricao = eventoDTO.getDescricao();
+        this.data = eventoDTO.getData();
+        this.local = eventoDTO.getLocal();
+    }
 }

@@ -1,6 +1,7 @@
 package com.challenges.desafiopetrobrasbackend.services;
 
 import com.challenges.desafiopetrobrasbackend.dtos.EventosDTO;
+import com.challenges.desafiopetrobrasbackend.exceptions.ResourceNotFoundException;
 import com.challenges.desafiopetrobrasbackend.model.Eventos;
 import com.challenges.desafiopetrobrasbackend.repository.EventosRepository;
 import org.springframework.data.domain.Page;
@@ -25,12 +26,12 @@ public class EventosServiceImpl implements EventosService {
 
     @Override
     public EventosDTO getOne(Long id) {
-        return new EventosDTO(eventosRepository.getReferenceById(id.intValue()));
+        return new EventosDTO(eventosRepository.findById(id.intValue()).orElseThrow(() -> new ResourceNotFoundException("Evento não encontrado.")));
     }
 
     @Override
     public EventosDTO update(Long id, EventosDTO updateInfo) {
-        Eventos evento = eventosRepository.getReferenceById(id.intValue());
+        Eventos evento = eventosRepository.findById(id.intValue()).orElseThrow(() -> new ResourceNotFoundException("Evento não encontrado."));
         evento.setDescricao(updateInfo.getDescricao());
         evento.setTitulo(updateInfo.getTitulo());
         evento.setData(updateInfo.getData());
@@ -41,13 +42,13 @@ public class EventosServiceImpl implements EventosService {
     }
 
     @Override
-    public void save(Eventos evento) {
-        eventosRepository.save(evento);
+    public void save(EventosDTO evento) {
+        eventosRepository.save(new Eventos(evento));
     }
 
     @Override
     public void delete(Long id) {
-        Eventos evento = eventosRepository.getReferenceById(id.intValue());
+        Eventos evento = eventosRepository.findById(id.intValue()).orElseThrow(() -> new ResourceNotFoundException("Evento não encontrado."));
         evento.setDeleted("S");
         evento.setUpdatedAt(Date.from(Instant.now()));
 
